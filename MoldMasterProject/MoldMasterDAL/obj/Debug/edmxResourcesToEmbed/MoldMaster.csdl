@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MoldMasterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployeeSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MoldTransfers" Relationship="Self.FK_MoldTransfers_JobTypeID" FromRole="JobTypes" ToRole="MoldTransfers" />
+  </EntityType>
+  <EntityType Name="Machine">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WorkCenterID" Type="Int32" Nullable="false" />
+    <Property Name="MoldCapcity" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="WorkCenter" Relationship="Self.FK_Machines_WorkCenterID" FromRole="Machines" ToRole="WorkCenters" />
+    <NavigationProperty Name="MoldJournals" Relationship="Self.FK_MoldJournals_MachineID" FromRole="Machines" ToRole="MoldJournals" />
+    <NavigationProperty Name="MoldMachines" Relationship="Self.FK_MoldMachines_MachineID" FromRole="Machines" ToRole="MoldMachines" />
+    <NavigationProperty Name="MoldSetups" Relationship="Self.FK_MoldSetups_MachineID" FromRole="Machines" ToRole="MoldSetups" />
+    <NavigationProperty Name="MoldTransfers" Relationship="Self.FK_MoldTransfers_FromMachineID" FromRole="Machines" ToRole="MoldTransfers" />
+    <NavigationProperty Name="MoldTransfers1" Relationship="Self.FK_MoldTransfers_ToMachineID" FromRole="Machines" ToRole="MoldTransfers" />
+  </EntityType>
+  <EntityType Name="MaintenancePlan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MoldID" Type="Int32" Nullable="false" />
+    <Property Name="PlanStartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PlanEndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Mold" Relationship="Self.FK_MaintenancePlan_MoldID" FromRole="MaintenancePlan" ToRole="Molds" />
+  </EntityType>
+  <EntityType Name="MoldJournal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MoldID" Type="Int32" Nullable="false" />
+    <Property Name="MachineID" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="GoodPartQty" Type="Int32" Nullable="false" />
+    <Property Name="ScrapPartQty" Type="Int32" />
+    <Property Name="DateRecorded" Type="DateTime" Precision="0" />
+    <Property Name="ReportedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Machine" Relationship="Self.FK_MoldJournals_MachineID" FromRole="MoldJournals" ToRole="Machines" />
+    <NavigationProperty Name="Mold" Relationship="Self.FK_MoldJournals_MoldID" FromRole="MoldJournals" ToRole="Molds" />
+  </EntityType>
+  <EntityType Name="MoldMachine">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MoldID" Type="Int32" Nullable="false" />
+    <Property Name="MachineID" Type="Int32" Nullable="false" />
+    <Property Name="MaxQty" Type="Int32" />
+    <Property Name="IsEvenRequired" Type="Int32" />
+    <Property Name="SetupDuration_sec" Type="Int32" />
+    <Property Name="CycleDuration_sec" Type="Int32" />
+    <Property Name="WaitDuration_sec" Type="Int32" />
+    <NavigationProperty Name="Machine" Relationship="Self.FK_MoldMachines_MachineID" FromRole="MoldMachines" ToRole="Machines" />
+    <NavigationProperty Name="Mold" Relationship="Self.FK_MoldMachines_MoldID" FromRole="MoldMachines" ToRole="Molds" />
+  </EntityType>
+  <EntityType Name="MoldModel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MoldTypeID" Type="Int32" Nullable="false" />
+    <Property Name="PartNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cavity" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DesignerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DesignDate" Type="DateTime" Precision="0" />
+    <Property Name="CycleDuration_sec" Type="Int32" />
+    <Property Name="WaitDuration_sec" Type="Int32" />
+    <Property Name="ExpectedLife_units" Type="Int32" />
+    <NavigationProperty Name="MoldType" Relationship="Self.FK_MoldModels_MoldTypeID" FromRole="MoldModels" ToRole="MoldTypes" />
+    <NavigationProperty Name="Molds" Relationship="Self.FK_Molds_ModelID" FromRole="MoldModels" ToRole="Molds" />
+  </EntityType>
+  <EntityType Name="Mold">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModelID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DatePurchased" Type="DateTime" Precision="0" />
+    <Property Name="DateRetired" Type="DateTime" Precision="0" />
+    <Property Name="ProducerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateOrdered" Type="DateTime" Precision="0" />
+    <Property Name="DateReceived" Type="DateTime" Precision="0" />
+    <Property Name="PricePurchased" Type="Decimal" Precision="14" Scale="4" />
+    <NavigationProperty Name="MaintenancePlans" Relationship="Self.FK_MaintenancePlan_MoldID" FromRole="Molds" ToRole="MaintenancePlan" />
+    <NavigationProperty Name="MoldJournals" Relationship="Self.FK_MoldJournals_MoldID" FromRole="Molds" ToRole="MoldJournals" />
+    <NavigationProperty Name="MoldMachines" Relationship="Self.FK_MoldMachines_MoldID" FromRole="Molds" ToRole="MoldMachines" />
+    <NavigationProperty Name="MoldModel" Relationship="Self.FK_Molds_ModelID" FromRole="Molds" ToRole="MoldModels" />
+    <NavigationProperty Name="MoldSetups" Relationship="Self.FK_MoldSetups_MoldID" FromRole="Molds" ToRole="MoldSetups" />
+    <NavigationProperty Name="MoldTransfers" Relationship="Self.FK_MoldTransfers_MoldID" FromRole="Molds" ToRole="MoldTransfers" />
+  </EntityType>
+  <EntityType Name="MoldSetup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SetupTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MoldID" Type="Int32" Nullable="false" />
+    <Property Name="MachineID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Machine" Relationship="Self.FK_MoldSetups_MachineID" FromRole="MoldSetups" ToRole="Machines" />
+    <NavigationProperty Name="Mold" Relationship="Self.FK_MoldSetups_MoldID" FromRole="MoldSetups" ToRole="Molds" />
+  </EntityType>
+  <EntityType Name="MoldTransfer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransferTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MoldID" Type="Int32" Nullable="false" />
+    <Property Name="JobTypeID" Type="Int32" Nullable="false" />
+    <Property Name="FromMachineID" Type="Int32" />
+    <Property Name="FromWorkCenterID" Type="Int32" />
+    <Property Name="ToMachineID" Type="Int32" />
+    <Property Name="ToWorkCenterID" Type="Int32" />
+    <NavigationProperty Name="JobType" Relationship="Self.FK_MoldTransfers_JobTypeID" FromRole="MoldTransfers" ToRole="JobTypes" />
+    <NavigationProperty Name="Machine" Relationship="Self.FK_MoldTransfers_FromMachineID" FromRole="MoldTransfers" ToRole="Machines" />
+    <NavigationProperty Name="Machine1" Relationship="Self.FK_MoldTransfers_ToMachineID" FromRole="MoldTransfers" ToRole="Machines" />
+    <NavigationProperty Name="Mold" Relationship="Self.FK_MoldTransfers_MoldID" FromRole="MoldTransfers" ToRole="Molds" />
+    <NavigationProperty Name="WorkCenter" Relationship="Self.FK_MoldTransfers_FromWorkCenterID" FromRole="MoldTransfers" ToRole="WorkCenters" />
+    <NavigationProperty Name="WorkCenter1" Relationship="Self.FK_MoldTransfers_ToWorkCenterID" FromRole="MoldTransfers" ToRole="WorkCenters" />
+  </EntityType>
+  <EntityType Name="MoldType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MoldModels" Relationship="Self.FK_MoldModels_MoldTypeID" FromRole="MoldTypes" ToRole="MoldModels" />
+  </EntityType>
+  <EntityType Name="WorkCenter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsOutsource" Type="Int32" />
+    <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Machines" Relationship="Self.FK_Machines_WorkCenterID" FromRole="WorkCenters" ToRole="Machines" />
+    <NavigationProperty Name="MoldTransfers" Relationship="Self.FK_MoldTransfers_FromWorkCenterID" FromRole="WorkCenters" ToRole="MoldTransfers" />
+    <NavigationProperty Name="MoldTransfers1" Relationship="Self.FK_MoldTransfers_ToWorkCenterID" FromRole="WorkCenters" ToRole="MoldTransfers" />
+  </EntityType>
+  <Association Name="FK_MoldTransfers_JobTypeID">
+    <End Role="JobTypes" Type="Self.JobType" Multiplicity="1" />
+    <End Role="MoldTransfers" Type="Self.MoldTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldTransfers">
+        <PropertyRef Name="JobTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Machines_WorkCenterID">
+    <End Role="WorkCenters" Type="Self.WorkCenter" Multiplicity="1" />
+    <End Role="Machines" Type="Self.Machine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkCenters">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Machines">
+        <PropertyRef Name="WorkCenterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldJournals_MachineID">
+    <End Role="Machines" Type="Self.Machine" Multiplicity="1" />
+    <End Role="MoldJournals" Type="Self.MoldJournal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Machines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldJournals">
+        <PropertyRef Name="MachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldMachines_MachineID">
+    <End Role="Machines" Type="Self.Machine" Multiplicity="1" />
+    <End Role="MoldMachines" Type="Self.MoldMachine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Machines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldMachines">
+        <PropertyRef Name="MachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldSetups_MachineID">
+    <End Role="Machines" Type="Self.Machine" Multiplicity="1" />
+    <End Role="MoldSetups" Type="Self.MoldSetup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Machines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldSetups">
+        <PropertyRef Name="MachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldTransfers_FromMachineID">
+    <End Role="Machines" Type="Self.Machine" Multiplicity="0..1" />
+    <End Role="MoldTransfers" Type="Self.MoldTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Machines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldTransfers">
+        <PropertyRef Name="FromMachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldTransfers_ToMachineID">
+    <End Role="Machines" Type="Self.Machine" Multiplicity="0..1" />
+    <End Role="MoldTransfers" Type="Self.MoldTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Machines">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldTransfers">
+        <PropertyRef Name="ToMachineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaintenancePlan_MoldID">
+    <End Role="Molds" Type="Self.Mold" Multiplicity="1" />
+    <End Role="MaintenancePlan" Type="Self.MaintenancePlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Molds">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MaintenancePlan">
+        <PropertyRef Name="MoldID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldJournals_MoldID">
+    <End Role="Molds" Type="Self.Mold" Multiplicity="1" />
+    <End Role="MoldJournals" Type="Self.MoldJournal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Molds">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldJournals">
+        <PropertyRef Name="MoldID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldMachines_MoldID">
+    <End Role="Molds" Type="Self.Mold" Multiplicity="1" />
+    <End Role="MoldMachines" Type="Self.MoldMachine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Molds">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldMachines">
+        <PropertyRef Name="MoldID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldModels_MoldTypeID">
+    <End Role="MoldTypes" Type="Self.MoldType" Multiplicity="1" />
+    <End Role="MoldModels" Type="Self.MoldModel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MoldTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldModels">
+        <PropertyRef Name="MoldTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Molds_ModelID">
+    <End Role="MoldModels" Type="Self.MoldModel" Multiplicity="1" />
+    <End Role="Molds" Type="Self.Mold" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MoldModels">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Molds">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldSetups_MoldID">
+    <End Role="Molds" Type="Self.Mold" Multiplicity="1" />
+    <End Role="MoldSetups" Type="Self.MoldSetup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Molds">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldSetups">
+        <PropertyRef Name="MoldID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldTransfers_MoldID">
+    <End Role="Molds" Type="Self.Mold" Multiplicity="1" />
+    <End Role="MoldTransfers" Type="Self.MoldTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Molds">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldTransfers">
+        <PropertyRef Name="MoldID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldTransfers_FromWorkCenterID">
+    <End Role="WorkCenters" Type="Self.WorkCenter" Multiplicity="0..1" />
+    <End Role="MoldTransfers" Type="Self.MoldTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkCenters">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldTransfers">
+        <PropertyRef Name="FromWorkCenterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MoldTransfers_ToWorkCenterID">
+    <End Role="WorkCenters" Type="Self.WorkCenter" Multiplicity="0..1" />
+    <End Role="MoldTransfers" Type="Self.MoldTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkCenters">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MoldTransfers">
+        <PropertyRef Name="ToWorkCenterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MoldMasterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="JobTypes" EntityType="Self.JobType" />
+    <EntitySet Name="Machines" EntityType="Self.Machine" />
+    <EntitySet Name="MaintenancePlans" EntityType="Self.MaintenancePlan" />
+    <EntitySet Name="MoldJournals" EntityType="Self.MoldJournal" />
+    <EntitySet Name="MoldMachines" EntityType="Self.MoldMachine" />
+    <EntitySet Name="MoldModels" EntityType="Self.MoldModel" />
+    <EntitySet Name="Molds" EntityType="Self.Mold" />
+    <EntitySet Name="MoldSetups" EntityType="Self.MoldSetup" />
+    <EntitySet Name="MoldTransfers" EntityType="Self.MoldTransfer" />
+    <EntitySet Name="MoldTypes" EntityType="Self.MoldType" />
+    <EntitySet Name="WorkCenters" EntityType="Self.WorkCenter" />
+    <AssociationSet Name="FK_MoldTransfers_JobTypeID" Association="Self.FK_MoldTransfers_JobTypeID">
+      <End Role="JobTypes" EntitySet="JobTypes" />
+      <End Role="MoldTransfers" EntitySet="MoldTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Machines_WorkCenterID" Association="Self.FK_Machines_WorkCenterID">
+      <End Role="WorkCenters" EntitySet="WorkCenters" />
+      <End Role="Machines" EntitySet="Machines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldJournals_MachineID" Association="Self.FK_MoldJournals_MachineID">
+      <End Role="Machines" EntitySet="Machines" />
+      <End Role="MoldJournals" EntitySet="MoldJournals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldMachines_MachineID" Association="Self.FK_MoldMachines_MachineID">
+      <End Role="Machines" EntitySet="Machines" />
+      <End Role="MoldMachines" EntitySet="MoldMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldSetups_MachineID" Association="Self.FK_MoldSetups_MachineID">
+      <End Role="Machines" EntitySet="Machines" />
+      <End Role="MoldSetups" EntitySet="MoldSetups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldTransfers_FromMachineID" Association="Self.FK_MoldTransfers_FromMachineID">
+      <End Role="Machines" EntitySet="Machines" />
+      <End Role="MoldTransfers" EntitySet="MoldTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldTransfers_ToMachineID" Association="Self.FK_MoldTransfers_ToMachineID">
+      <End Role="Machines" EntitySet="Machines" />
+      <End Role="MoldTransfers" EntitySet="MoldTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaintenancePlan_MoldID" Association="Self.FK_MaintenancePlan_MoldID">
+      <End Role="Molds" EntitySet="Molds" />
+      <End Role="MaintenancePlan" EntitySet="MaintenancePlans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldJournals_MoldID" Association="Self.FK_MoldJournals_MoldID">
+      <End Role="Molds" EntitySet="Molds" />
+      <End Role="MoldJournals" EntitySet="MoldJournals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldMachines_MoldID" Association="Self.FK_MoldMachines_MoldID">
+      <End Role="Molds" EntitySet="Molds" />
+      <End Role="MoldMachines" EntitySet="MoldMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldModels_MoldTypeID" Association="Self.FK_MoldModels_MoldTypeID">
+      <End Role="MoldTypes" EntitySet="MoldTypes" />
+      <End Role="MoldModels" EntitySet="MoldModels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Molds_ModelID" Association="Self.FK_Molds_ModelID">
+      <End Role="MoldModels" EntitySet="MoldModels" />
+      <End Role="Molds" EntitySet="Molds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldSetups_MoldID" Association="Self.FK_MoldSetups_MoldID">
+      <End Role="Molds" EntitySet="Molds" />
+      <End Role="MoldSetups" EntitySet="MoldSetups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldTransfers_MoldID" Association="Self.FK_MoldTransfers_MoldID">
+      <End Role="Molds" EntitySet="Molds" />
+      <End Role="MoldTransfers" EntitySet="MoldTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldTransfers_FromWorkCenterID" Association="Self.FK_MoldTransfers_FromWorkCenterID">
+      <End Role="WorkCenters" EntitySet="WorkCenters" />
+      <End Role="MoldTransfers" EntitySet="MoldTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MoldTransfers_ToWorkCenterID" Association="Self.FK_MoldTransfers_ToWorkCenterID">
+      <End Role="WorkCenters" EntitySet="WorkCenters" />
+      <End Role="MoldTransfers" EntitySet="MoldTransfers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

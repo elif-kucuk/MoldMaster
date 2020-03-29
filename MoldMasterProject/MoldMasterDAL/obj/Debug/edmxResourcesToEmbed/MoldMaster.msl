@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MoldMasterModelStoreContainer" CdmEntityContainer="MoldMasterEntities">
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="MoldMasterModel.Employee">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmployeeSurname" ColumnName="EmployeeSurname" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobTypes">
+      <EntityTypeMapping TypeName="MoldMasterModel.JobType">
+        <MappingFragment StoreEntitySet="JobTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Machines">
+      <EntityTypeMapping TypeName="MoldMasterModel.Machine">
+        <MappingFragment StoreEntitySet="Machines">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="WorkCenterID" ColumnName="WorkCenterID" />
+          <ScalarProperty Name="MoldCapcity" ColumnName="MoldCapcity" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MaintenancePlans">
+      <EntityTypeMapping TypeName="MoldMasterModel.MaintenancePlan">
+        <MappingFragment StoreEntitySet="MaintenancePlan">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MoldID" ColumnName="MoldID" />
+          <ScalarProperty Name="PlanStartDate" ColumnName="PlanStartDate" />
+          <ScalarProperty Name="PlanEndDate" ColumnName="PlanEndDate" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MoldJournals">
+      <EntityTypeMapping TypeName="MoldMasterModel.MoldJournal">
+        <MappingFragment StoreEntitySet="MoldJournals">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DocNo" ColumnName="DocNo" />
+          <ScalarProperty Name="MoldID" ColumnName="MoldID" />
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="GoodPartQty" ColumnName="GoodPartQty" />
+          <ScalarProperty Name="ScrapPartQty" ColumnName="ScrapPartQty" />
+          <ScalarProperty Name="DateRecorded" ColumnName="DateRecorded" />
+          <ScalarProperty Name="ReportedBy" ColumnName="ReportedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MoldMachines">
+      <EntityTypeMapping TypeName="MoldMasterModel.MoldMachine">
+        <MappingFragment StoreEntitySet="MoldMachines">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MoldID" ColumnName="MoldID" />
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+          <ScalarProperty Name="MaxQty" ColumnName="MaxQty" />
+          <ScalarProperty Name="IsEvenRequired" ColumnName="IsEvenRequired" />
+          <ScalarProperty Name="SetupDuration_sec" ColumnName="SetupDuration_sec" />
+          <ScalarProperty Name="CycleDuration_sec" ColumnName="CycleDuration_sec" />
+          <ScalarProperty Name="WaitDuration_sec" ColumnName="WaitDuration_sec" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MoldModels">
+      <EntityTypeMapping TypeName="MoldMasterModel.MoldModel">
+        <MappingFragment StoreEntitySet="MoldModels">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MoldTypeID" ColumnName="MoldTypeID" />
+          <ScalarProperty Name="PartNo" ColumnName="PartNo" />
+          <ScalarProperty Name="Cavity" ColumnName="Cavity" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DesignerName" ColumnName="DesignerName" />
+          <ScalarProperty Name="DesignDate" ColumnName="DesignDate" />
+          <ScalarProperty Name="CycleDuration_sec" ColumnName="CycleDuration_sec" />
+          <ScalarProperty Name="WaitDuration_sec" ColumnName="WaitDuration_sec" />
+          <ScalarProperty Name="ExpectedLife_units" ColumnName="ExpectedLife_units" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Molds">
+      <EntityTypeMapping TypeName="MoldMasterModel.Mold">
+        <MappingFragment StoreEntitySet="Molds">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DatePurchased" ColumnName="DatePurchased" />
+          <ScalarProperty Name="DateRetired" ColumnName="DateRetired" />
+          <ScalarProperty Name="ProducerName" ColumnName="ProducerName" />
+          <ScalarProperty Name="DateOrdered" ColumnName="DateOrdered" />
+          <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+          <ScalarProperty Name="PricePurchased" ColumnName="PricePurchased" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MoldSetups">
+      <EntityTypeMapping TypeName="MoldMasterModel.MoldSetup">
+        <MappingFragment StoreEntitySet="MoldSetups">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SetupTime" ColumnName="SetupTime" />
+          <ScalarProperty Name="MoldID" ColumnName="MoldID" />
+          <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MoldTransfers">
+      <EntityTypeMapping TypeName="MoldMasterModel.MoldTransfer">
+        <MappingFragment StoreEntitySet="MoldTransfers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DocNo" ColumnName="DocNo" />
+          <ScalarProperty Name="TransferTime" ColumnName="TransferTime" />
+          <ScalarProperty Name="MoldID" ColumnName="MoldID" />
+          <ScalarProperty Name="JobTypeID" ColumnName="JobTypeID" />
+          <ScalarProperty Name="FromMachineID" ColumnName="FromMachineID" />
+          <ScalarProperty Name="FromWorkCenterID" ColumnName="FromWorkCenterID" />
+          <ScalarProperty Name="ToMachineID" ColumnName="ToMachineID" />
+          <ScalarProperty Name="ToWorkCenterID" ColumnName="ToWorkCenterID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MoldTypes">
+      <EntityTypeMapping TypeName="MoldMasterModel.MoldType">
+        <MappingFragment StoreEntitySet="MoldTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkCenters">
+      <EntityTypeMapping TypeName="MoldMasterModel.WorkCenter">
+        <MappingFragment StoreEntitySet="WorkCenters">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsOutsource" ColumnName="IsOutsource" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

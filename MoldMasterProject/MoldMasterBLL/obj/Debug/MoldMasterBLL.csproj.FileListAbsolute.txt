@@ -1,0 +1,14 @@
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\bin\Debug\MoldMasterBLL.dll.config
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\bin\Debug\MoldMasterBLL.dll
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\bin\Debug\MoldMasterBLL.pdb
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\bin\Debug\EntityFramework.dll
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\bin\Debug\MoldMasterDAL.dll
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\bin\Debug\MoldMasterDAL.pdb
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\bin\Debug\MoldMasterDAL.dll.config
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\bin\Debug\EntityFramework.xml
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\obj\Debug\MoldMasterBLL.csprojAssemblyReference.cache
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\obj\Debug\MoldMasterBLL.csproj.CopyComplete
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\obj\Debug\MoldMasterBLL.dll
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterBLL\obj\Debug\MoldMasterBLL.pdb

@@ -1,0 +1,11 @@
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterDAL\bin\Debug\MoldMasterDAL.dll.config
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterDAL\bin\Debug\MoldMasterDAL.dll
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterDAL\bin\Debug\MoldMasterDAL.pdb
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterDAL\bin\Debug\EntityFramework.dll
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterDAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterDAL\bin\Debug\EntityFramework.xml
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterDAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterDAL\obj\Debug\MoldMasterDAL.csprojAssemblyReference.cache
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterDAL\obj\Debug\MoldMasterDAL.csproj.CopyComplete
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterDAL\obj\Debug\MoldMasterDAL.dll
+C:\Users\Elif Kucuk\OneDrive\Desktop\MoldMasterProject\MoldMasterDAL\obj\Debug\MoldMasterDAL.pdb

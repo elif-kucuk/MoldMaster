@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7424c417654d43a7b6634b0237037f42" Name="Diagram1">
+        <EntityTypeShape EntityType="MoldMasterModel.Employee" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoldMasterModel.JobType" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoldMasterModel.Machine" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoldMasterModel.MaintenancePlan" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoldMasterModel.MoldJournal" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoldMasterModel.MoldMachine" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoldMasterModel.MoldModel" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoldMasterModel.Mold" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoldMasterModel.MoldSetup" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoldMasterModel.MoldTransfer" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoldMasterModel.MoldType" Width="1.5" PointX="1.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoldMasterModel.WorkCenter" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldTransfers_JobTypeID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_Machines_WorkCenterID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldJournals_MachineID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldMachines_MachineID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldSetups_MachineID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldTransfers_FromMachineID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldTransfers_ToMachineID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MaintenancePlan_MoldID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldJournals_MoldID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldMachines_MoldID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldModels_MoldTypeID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_Molds_ModelID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldSetups_MoldID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldTransfers_MoldID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldTransfers_FromWorkCenterID" ManuallyRouted="false" />
+        <AssociationConnector Association="MoldMasterModel.FK_MoldTransfers_ToWorkCenterID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
